@@ -17,6 +17,10 @@ namespace My_Books.Data.Models
         public string Author { get; set; }
         public string CoverUrl { get; set; }
         public DateTime DateAdded { get; set; }
-        public int MyProperty { get; set; }
+        public int? MyProperty { get; set; }
+
+        //Navigational Properties
+        public int PublisherId { get; set; }
+        public Publisher Publisher { get; set; }
     }
 }

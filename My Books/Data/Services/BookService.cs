@@ -42,7 +42,7 @@ namespace My_Books.Data.Services
         {
             var _book = _context.Books.Where(n => n.Id == bookId).FirstOrDefault();
             
-            return _book;
+             return _book;
         }
 
         public Book UpdateBookById(int id, BookVM book)
