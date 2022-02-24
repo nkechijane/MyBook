@@ -9,7 +9,6 @@ namespace My_Books.Data.Services
 {
     public class PublisherService
     {
-
         private readonly AppDbContext _context;
         public PublisherService(AppDbContext context)
         {
@@ -24,6 +23,21 @@ namespace My_Books.Data.Services
             };
             _context.Publishers.Add(_publisher);
             _context.SaveChanges();
+        }
+
+        public PublisherWithBooksAndAuthorsVM GetPublisherData(int publisherId)
+        {
+            var _publisherData = _context.Publishers.Where(n => n.id == publisherId)
+                .Select(n => new PublisherWithBooksAndAuthorsVM()
+                {
+                    Name = n.Name,
+                    BookAuthors = n.Books.Select(n => new BookAuthorVM()
+                    {
+                        BookName = n.Title,
+                        BookAuthors = n.Book_Authors.Select(n => n.Author.FullName).ToList()
+                    }).ToList()
+                }).FirstOrDefault();
+            return _publisherData;
         }
     }
 }

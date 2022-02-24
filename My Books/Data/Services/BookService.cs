@@ -15,7 +15,7 @@ namespace My_Books.Data.Services
             _context = context;
         }
 
-        public void AddBookwithAuthor(BookVM book)
+        public void AddBookwithAuthors(BookVM book)
         {
             var _book = new Book()
             {
